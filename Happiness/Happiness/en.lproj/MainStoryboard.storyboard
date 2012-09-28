@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="12C54" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1926"/>
+    </dependencies>
+    <scenes>
+        <!--Happiness View Controller-->
+        <scene sceneID="5">
+            <objects>
+                <viewController id="2" customClass="HappinessViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3">
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6yu-Zp-llt" customClass="FaceView">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6yu-Zp-llt" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="3lL-Ce-M7F"/>
+                            <constraint firstItem="6yu-Zp-llt" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="6n6-oP-lVb"/>
+                            <constraint firstItem="6yu-Zp-llt" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="t5m-Pa-OY9"/>
+                            <constraint firstItem="6yu-Zp-llt" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="x2C-m1-uKv"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="faceView" destination="6yu-Zp-llt" id="2bf-PP-pST"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>
