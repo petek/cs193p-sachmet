@@ -7,6 +7,7 @@
 //
 
 #import "FlickrSpotsFirstViewController.h"
+#import "FlickrFetcher/FlickrFetcher.h"
 
 @interface FlickrSpotsFirstViewController ()
 

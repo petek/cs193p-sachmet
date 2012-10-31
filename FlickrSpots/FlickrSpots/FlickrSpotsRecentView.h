@@ -1,5 +1,5 @@
 //
-//  FlickrSpotsFirstViewController.h
+//  FlickrSpotsRecentView.h
 //  FlickrSpots
 //
 //  Created by Krawczyk, Pete on 10/31/12.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FlickrSpotsFirstViewController : UITableViewController
+@interface FlickrSpotsRecentView : UITableView
 
 @end
