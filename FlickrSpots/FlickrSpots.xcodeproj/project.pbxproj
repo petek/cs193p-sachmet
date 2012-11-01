@@ -19,12 +19,14 @@
 		E349728C16418B2600639E9A /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E349728A16418B2600639E9A /* iPhone.storyboard */; };
 		E349729116418B2700639E9A /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = E349729016418B2600639E9A /* first.png */; };
 		E349729316418B2700639E9A /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E349729216418B2700639E9A /* first@2x.png */; };
-		E349729616418B2700639E9A /* FlickrSpotsSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E349729516418B2700639E9A /* FlickrSpotsSecondViewController.m */; };
 		E349729816418B2700639E9A /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = E349729716418B2700639E9A /* second.png */; };
 		E349729A16418B2700639E9A /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E349729916418B2700639E9A /* second@2x.png */; };
 		E34972A416418B4E00639E9A /* FlickrFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = E34972A316418B4E00639E9A /* FlickrFetcher.m */; };
 		E34972AA164190D100639E9A /* FlickrSpotsTopPlacesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E34972A9164190D100639E9A /* FlickrSpotsTopPlacesViewController.m */; };
 		E34972B01641B16100639E9A /* FlickrSpotsPlacePhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E34972AF1641B16100639E9A /* FlickrSpotsPlacePhotosViewController.m */; };
+		E3C905651642B5850035A48B /* FlickrSpotsPhotoDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C905641642B5850035A48B /* FlickrSpotsPhotoDisplayViewController.m */; };
+		E3C9056D1642C06A0035A48B /* FlickrSpotsRecentPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C9056C1642C06A0035A48B /* FlickrSpotsRecentPhotosViewController.m */; };
+		E3C905701642D9820035A48B /* FlickrSpotsFavoriteStore.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C9056F1642D9820035A48B /* FlickrSpotsFavoriteStore.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,8 +46,6 @@
 		E349728B16418B2600639E9A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/iPhone.storyboard; sourceTree = "<group>"; };
 		E349729016418B2600639E9A /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
 		E349729216418B2700639E9A /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
-		E349729416418B2700639E9A /* FlickrSpotsSecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlickrSpotsSecondViewController.h; sourceTree = "<group>"; };
-		E349729516418B2700639E9A /* FlickrSpotsSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlickrSpotsSecondViewController.m; sourceTree = "<group>"; };
 		E349729716418B2700639E9A /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
 		E349729916418B2700639E9A /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
 		E34972A116418B4E00639E9A /* FlickrAPIKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrAPIKey.h; sourceTree = "<group>"; };
@@ -55,6 +55,12 @@
 		E34972A9164190D100639E9A /* FlickrSpotsTopPlacesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrSpotsTopPlacesViewController.m; sourceTree = "<group>"; };
 		E34972AE1641B16100639E9A /* FlickrSpotsPlacePhotosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrSpotsPlacePhotosViewController.h; sourceTree = "<group>"; };
 		E34972AF1641B16100639E9A /* FlickrSpotsPlacePhotosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrSpotsPlacePhotosViewController.m; sourceTree = "<group>"; };
+		E3C905631642B5840035A48B /* FlickrSpotsPhotoDisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrSpotsPhotoDisplayViewController.h; sourceTree = "<group>"; };
+		E3C905641642B5850035A48B /* FlickrSpotsPhotoDisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrSpotsPhotoDisplayViewController.m; sourceTree = "<group>"; };
+		E3C9056B1642C06A0035A48B /* FlickrSpotsRecentPhotosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrSpotsRecentPhotosViewController.h; sourceTree = SOURCE_ROOT; };
+		E3C9056C1642C06A0035A48B /* FlickrSpotsRecentPhotosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrSpotsRecentPhotosViewController.m; sourceTree = SOURCE_ROOT; };
+		E3C9056E1642D9820035A48B /* FlickrSpotsFavoriteStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrSpotsFavoriteStore.h; sourceTree = "<group>"; };
+		E3C9056F1642D9820035A48B /* FlickrSpotsFavoriteStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrSpotsFavoriteStore.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,14 +110,18 @@
 				E349728116418B2600639E9A /* FlickrSpotsAppDelegate.h */,
 				E349728216418B2600639E9A /* FlickrSpotsAppDelegate.m */,
 				E349728A16418B2600639E9A /* iPhone.storyboard */,
-				E34972A8164190D100639E9A /* FlickrSpotsTopPlacesViewController.h */,
-				E34972A9164190D100639E9A /* FlickrSpotsTopPlacesViewController.m */,
+				E3C9056E1642D9820035A48B /* FlickrSpotsFavoriteStore.h */,
+				E3C9056F1642D9820035A48B /* FlickrSpotsFavoriteStore.m */,
+				E3C905631642B5840035A48B /* FlickrSpotsPhotoDisplayViewController.h */,
+				E3C905641642B5850035A48B /* FlickrSpotsPhotoDisplayViewController.m */,
 				E34972AE1641B16100639E9A /* FlickrSpotsPlacePhotosViewController.h */,
 				E34972AF1641B16100639E9A /* FlickrSpotsPlacePhotosViewController.m */,
+				E3C9056B1642C06A0035A48B /* FlickrSpotsRecentPhotosViewController.h */,
+				E3C9056C1642C06A0035A48B /* FlickrSpotsRecentPhotosViewController.m */,
+				E34972A8164190D100639E9A /* FlickrSpotsTopPlacesViewController.h */,
+				E34972A9164190D100639E9A /* FlickrSpotsTopPlacesViewController.m */,
 				E349729016418B2600639E9A /* first.png */,
 				E349729216418B2700639E9A /* first@2x.png */,
-				E349729416418B2700639E9A /* FlickrSpotsSecondViewController.h */,
-				E349729516418B2700639E9A /* FlickrSpotsSecondViewController.m */,
 				E349729716418B2700639E9A /* second.png */,
 				E349729916418B2700639E9A /* second@2x.png */,
 				E34972A016418B4E00639E9A /* FlickrFetcher */,
@@ -217,10 +227,12 @@
 			files = (
 				E349727F16418B2600639E9A /* main.m in Sources */,
 				E349728316418B2600639E9A /* FlickrSpotsAppDelegate.m in Sources */,
-				E349729616418B2700639E9A /* FlickrSpotsSecondViewController.m in Sources */,
 				E34972A416418B4E00639E9A /* FlickrFetcher.m in Sources */,
 				E34972AA164190D100639E9A /* FlickrSpotsTopPlacesViewController.m in Sources */,
 				E34972B01641B16100639E9A /* FlickrSpotsPlacePhotosViewController.m in Sources */,
+				E3C905651642B5850035A48B /* FlickrSpotsPhotoDisplayViewController.m in Sources */,
+				E3C9056D1642C06A0035A48B /* FlickrSpotsRecentPhotosViewController.m in Sources */,
+				E3C905701642D9820035A48B /* FlickrSpotsFavoriteStore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,7 +280,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -288,7 +300,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -336,6 +348,7 @@
 				E349729F16418B2700639E9A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FlickrSpotsSecondViewController : UIViewController
+@interface FlickrSpotsRecentPhotosViewController : UIViewController
 
 @end

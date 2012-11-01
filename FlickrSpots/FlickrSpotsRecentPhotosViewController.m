@@ -1,49 +1,28 @@
 //
-//  FlickrSpotsPlacePhotosViewController.m
+//  FlickrSpotsRecentPhotosViewController.m
 //  FlickrSpots
 //
-//  Created by Krawczyk, Pete on 10/31/12.
+//  Created by Krawczyk, Pete on 11/1/12.
 //  Copyright (c) 2012 Krawczyk, Pete. All rights reserved.
 //
 
-#import "FlickrSpotsPlacePhotosViewController.h"
+#import "FlickrSpotsRecentPhotosViewController.h"
 #import "FlickrSpotsPhotoDisplayViewController.h"
 #import "FlickrSpotsFavoriteStore.h"
-#import "FlickrFetcher/FlickrFetcher.h"
+#import "FlickrSpots/FlickrFetcher/FlickrFetcher.h"
 
-@interface FlickrSpotsPlacePhotosViewController()
-@property (nonatomic, strong) NSArray *placePhotos;
+@interface FlickrSpotsRecentPhotosViewController ()
+@property (strong, nonatomic) NSArray *viewed;
 @end
 
-@implementation FlickrSpotsPlacePhotosViewController
+@implementation FlickrSpotsRecentPhotosViewController
 
 @synthesize delegate = _delegate;
-@synthesize description = _description;
-@synthesize place = _place;
-@synthesize placePhotos = _placePhotos;
+@synthesize viewed = _viewed;
 
--(void)setPlace:(NSDictionary *)place
-{
-    _place = place;
-    if (!self.description) {
-        self.title = [place objectForKey:@"_content"];
-    }
-}
-
--(void)setDescription:(NSString *)description {
-    _description = description;
-    self.title = description;
-}
-
--(NSArray *)placePhotos {
-    if (!_placePhotos) {
-        self.placePhotos = [FlickrFetcher photosInPlace:self.place maxResults:20];
-    }
-    return _placePhotos;
-}
-
--(void)setPlacePhotos:(NSArray *)placePhotos {
-    _placePhotos = placePhotos;
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self setViewed:[FlickrSpotsFavoriteStore favoritePhotos]];
     [self.tableView reloadData];
 }
 
@@ -51,13 +30,10 @@
     if ([segue.identifier isEqualToString:@"showPhoto"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
         NSUInteger whichPhoto = [indexPath indexAtPosition:(indexPath.length - 1)];
-        NSDictionary *photoObject = [self.placePhotos objectAtIndex:whichPhoto];
+        NSDictionary *photoObject = [self.viewed objectAtIndex:whichPhoto];
         [segue.destinationViewController setPhotoLocation:[FlickrFetcher urlForPhoto:photoObject format:2]];
         [segue.destinationViewController setDescription:[[sender textLabel] text]];
         [segue.destinationViewController setDelegate:self];
-        
-        // and now add it to User defaults
-        [FlickrSpotsFavoriteStore addFavoritePhoto:photoObject];
     }
 }
 
@@ -69,17 +45,17 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.placePhotos count];
+    return [self.viewed count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Picture Selector";
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"Recent Photo";
+    // UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     // Configure the cell...
-    NSDictionary *currentPhoto = [self.placePhotos objectAtIndex:indexPath.row];
+    NSDictionary *currentPhoto = [self.viewed objectAtIndex:indexPath.row];
     if ([currentPhoto valueForKey:@"title"]) {
         cell.textLabel.text = [currentPhoto valueForKey:@"title"];
         cell.detailTextLabel.text = [[currentPhoto valueForKey:@"description"] valueForKey:@"_content"];
@@ -144,6 +120,5 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
 }
-
 
 @end

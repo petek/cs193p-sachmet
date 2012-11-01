@@ -6,13 +6,13 @@
 //  Copyright (c) 2012 Krawczyk, Pete. All rights reserved.
 //
 
-#import "FlickrSpotsSecondViewController.h"
+#import "FlickrSpotsRecentPhotosViewController.h"
 
-@interface FlickrSpotsSecondViewController ()
+@interface FlickrSpotsRecentPhotosViewController ()
 
 @end
 
-@implementation FlickrSpotsSecondViewController
+@implementation FlickrSpotsRecentPhotosViewController
 
 - (void)viewDidLoad
 {
