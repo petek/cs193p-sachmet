@@ -22,7 +22,7 @@
 @synthesize imageView;
 @synthesize photoData = _photoData;
 @synthesize photoLocation = _photoLocation;
-@synthesize scrollView;
+@synthesize scrollView = _scrollView;
 
 -(void)setPhotoLocation:(NSURL *)photoLocation {
     _photoLocation = photoLocation;
@@ -32,6 +32,18 @@
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
 {
     return self.imageView;
+}
+
+-(void)setScrollView:(UIScrollView *)scrollView {
+    _scrollView = scrollView;
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resetView:)];
+    [tapGesture setNumberOfTapsRequired:2];
+    [tapGesture setNumberOfTouchesRequired:1];
+    [self.scrollView addGestureRecognizer:tapGesture];
+}
+
+-(void)resetView:(UITapGestureRecognizer *)gesture {
+    [self redoViewMath];
 }
 
 -(void)redoViewMath{
