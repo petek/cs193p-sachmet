@@ -35,9 +35,8 @@
 }
 
 -(void)redoViewMath{
-    self.scrollView.minimumZoomScale = 1;
-    self.scrollView.maximumZoomScale = 1;
     self.scrollView.zoomScale = 1;
+    self.scrollView.maximumZoomScale = 4;
     self.scrollView.contentSize = self.imageView.image.size;
     self.imageView.frame = CGRectMake(0, 0, self.imageView.image.size.width, self.imageView.image.size.height);
     
@@ -47,20 +46,18 @@
     if (widthZoom < heightZoom) {
         // show the full height and attempt to center the width
         self.scrollView.minimumZoomScale = (widthZoom < 1 ? widthZoom : 1);
-        self.scrollView.maximumZoomScale = (heightZoom * 4 > 1 ? heightZoom * 4 : 1);
-        zoomRect.origin.x = (int)(self.imageView.image.size.width - (self.imageView.image.size.width * heightZoom))/2;
-        zoomRect.size.width = self.imageView.image.size.width * heightZoom;
-        zoomRect.origin.y = 0;
+        zoomRect.size.width = self.scrollView.frame.size.width / heightZoom;
+        zoomRect.origin.x = (int)(self.imageView.image.size.width - zoomRect.size.width)/2;
         zoomRect.size.height = self.imageView.image.size.height;
+        zoomRect.origin.y = 0;
     }
     else {
         // show the full width and attempt to center the height
         self.scrollView.minimumZoomScale = (heightZoom < 1 ? heightZoom : 1);
-        self.scrollView.maximumZoomScale = (widthZoom * 4 > 1 ? widthZoom * 4 : 1);
-        zoomRect.origin.x = 0;
         zoomRect.size.width = self.imageView.image.size.width;
-        zoomRect.origin.y = (int)(self.imageView.image.size.height - (self.imageView.image.size.height * widthZoom))/2;
-        zoomRect.size.height = self.imageView.image.size.height * widthZoom;
+        zoomRect.origin.x = 0;
+        zoomRect.size.height = self.scrollView.frame.size.height / widthZoom;
+        zoomRect.origin.y = (int)(self.imageView.image.size.height - zoomRect.size.height)/2;
     }
     [self.scrollView zoomToRect:zoomRect animated:YES];
 }
@@ -71,7 +68,6 @@
 
     UIImage *photoToShow = [UIImage imageWithData:self.photoData];
     [self.imageView setImage:photoToShow];
-    
     [self redoViewMath];
 }
 

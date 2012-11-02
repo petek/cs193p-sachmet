@@ -9,7 +9,7 @@
 #import "FlickrSpotsRecentPhotosViewController.h"
 #import "FlickrSpotsPhotoDisplayViewController.h"
 #import "FlickrSpotsFavoriteStore.h"
-#import "FlickrSpots/FlickrFetcher/FlickrFetcher.h"
+#import "FlickrFetcher/FlickrFetcher.h"
 
 @interface FlickrSpotsRecentPhotosViewController ()
 @property (strong, nonatomic) NSArray *viewed;
