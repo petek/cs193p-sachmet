@@ -52,7 +52,7 @@
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
         NSUInteger whichPhoto = [indexPath indexAtPosition:(indexPath.length - 1)];
         NSDictionary *photoObject = [self.placePhotos objectAtIndex:whichPhoto];
-        [segue.destinationViewController setPhotoLocation:[FlickrFetcher urlForPhoto:photoObject format:2]];
+        [segue.destinationViewController setPhotoLocation:[FlickrFetcher urlForPhoto:photoObject format:FlickrPhotoFormatLarge]];
         [segue.destinationViewController setDescription:[[sender textLabel] text]];
         [segue.destinationViewController setDelegate:self];
         
@@ -80,16 +80,21 @@
     
     // Configure the cell...
     NSDictionary *currentPhoto = [self.placePhotos objectAtIndex:indexPath.row];
-    if ([currentPhoto valueForKey:@"title"]) {
-        cell.textLabel.text = [currentPhoto valueForKey:@"title"];
-        cell.detailTextLabel.text = [[currentPhoto valueForKey:@"description"] valueForKey:@"_content"];
+    NSString *titleString = [currentPhoto valueForKey:FLICKR_PHOTO_TITLE];
+    NSString *descriptionString = [currentPhoto valueForKeyPath:FLICKR_PHOTO_DESCRIPTION];
+    if (titleString && ![titleString isEqualToString:@""]) {
+        cell.textLabel.text = titleString;
+        cell.detailTextLabel.text = descriptionString;
     }
-    else if ([[currentPhoto valueForKey:@"description"] valueForKey:@"_content"]) {
-        cell.textLabel.text = [[currentPhoto valueForKey:@"description"] valueForKey:@"_content"];
+    else if (descriptionString && ![descriptionString isEqualToString:@""]) {
+        cell.textLabel.text = descriptionString;
+        cell.detailTextLabel.text = @"";
     }
     else {
         cell.textLabel.text = @"Unknown";
+        cell.detailTextLabel.text = @"";
     }
+
     return cell;
 }
 

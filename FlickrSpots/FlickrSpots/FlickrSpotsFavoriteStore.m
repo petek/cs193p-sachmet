@@ -7,6 +7,7 @@
 //
 
 #import "FlickrSpotsFavoriteStore.h"
+#import "FlickrFetcher/FlickrFetcher.h"
 
 #define FAVORITES_KEY @"FlickrSpotsFavoriteStore.Favorites"
 #define MAX_FAVORITES 20
@@ -51,7 +52,7 @@
 +(void)removeFavoritePhoto:(NSDictionary *)photoObject {
     NSMutableArray *favorites = [self.favoritePhotos mutableCopy];
     for (int i = 0; i < [favorites count]; i++) {
-        if ([[[favorites objectAtIndex:i] objectForKey:@"id"] isEqualToString:[photoObject objectForKey:@"id"]]) {
+        if ([[[favorites objectAtIndex:i] objectForKey:FLICKR_PHOTO_ID] isEqualToString:[photoObject objectForKey:FLICKR_PHOTO_ID]]) {
             [favorites removeObjectAtIndex:i];
             break;
         }

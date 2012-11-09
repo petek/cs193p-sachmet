@@ -56,15 +56,19 @@
     
     // Configure the cell...
     NSDictionary *currentPhoto = [self.viewed objectAtIndex:indexPath.row];
-    if ([currentPhoto valueForKey:@"title"]) {
-        cell.textLabel.text = [currentPhoto valueForKey:@"title"];
-        cell.detailTextLabel.text = [[currentPhoto valueForKey:@"description"] valueForKey:@"_content"];
+    NSString *titleString = [currentPhoto valueForKey:FLICKR_PHOTO_TITLE];
+    NSString *descriptionString = [currentPhoto valueForKeyPath:FLICKR_PHOTO_DESCRIPTION];
+    if (titleString && ![titleString isEqualToString:@""]) {
+        cell.textLabel.text = titleString;
+        cell.detailTextLabel.text = descriptionString;
     }
-    else if ([[currentPhoto valueForKey:@"description"] valueForKey:@"_content"]) {
-        cell.textLabel.text = [[currentPhoto valueForKey:@"description"] valueForKey:@"_content"];
+    else if (descriptionString && ![descriptionString isEqualToString:@""]) {
+        cell.textLabel.text = descriptionString;
+        cell.detailTextLabel.text = @"";
     }
     else {
         cell.textLabel.text = @"Unknown";
+        cell.detailTextLabel.text = @"";
     }
     return cell;
 }
