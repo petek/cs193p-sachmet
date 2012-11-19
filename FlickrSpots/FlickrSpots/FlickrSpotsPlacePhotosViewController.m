@@ -47,17 +47,23 @@
     [self.tableView reloadData];
 }
 
+-(void)configurePhotoDisplayViewController:(FlickrSpotsPhotoDisplayViewController *)pvc
+                                 withPhoto:(id)photoObject
+                            andDescription:(NSString *)description
+{
+    [pvc setDelegate:self];
+    [pvc setPhoto:photoObject];
+    
+    // and now add it to User defaults
+    [FlickrSpotsFavoriteStore addFavoritePhoto:photoObject];
+}
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"showPhoto"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
         NSUInteger whichPhoto = [indexPath indexAtPosition:(indexPath.length - 1)];
         NSDictionary *photoObject = [self.placePhotos objectAtIndex:whichPhoto];
-        [segue.destinationViewController setPhotoLocation:[FlickrFetcher urlForPhoto:photoObject format:FlickrPhotoFormatLarge]];
-        [segue.destinationViewController setDescription:[[sender textLabel] text]];
-        [segue.destinationViewController setDelegate:self];
-        
-        // and now add it to User defaults
-        [FlickrSpotsFavoriteStore addFavoritePhoto:photoObject];
+        [self configurePhotoDisplayViewController:segue.destinationViewController withPhoto:photoObject andDescription:[[sender textLabel] text]];
     }
 }
 
@@ -139,16 +145,23 @@
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+-(FlickrSpotsPhotoDisplayViewController *)photoViewControllerFromSplitView {
+    id pvc = [self.splitViewController.viewControllers lastObject];
+    if (![pvc isKindOfClass:[FlickrSpotsPhotoDisplayViewController class]]) {
+        pvc = nil;
+    }
+    return pvc;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    id photoObject = [self.placePhotos objectAtIndex:indexPath.row];
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    NSString *description = cell.textLabel.text;
+    id pvc = [self photoViewControllerFromSplitView];
+    if (pvc) {
+        [self configurePhotoDisplayViewController:pvc withPhoto:photoObject andDescription:description];
+    }
+}
 
 @end

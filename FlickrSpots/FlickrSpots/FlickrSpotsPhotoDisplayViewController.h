@@ -10,7 +10,8 @@
 
 @interface FlickrSpotsPhotoDisplayViewController : UIViewController
 
-@property (strong, nonatomic) NSString *description;
-@property (strong, nonatomic) NSURL *photoLocation;
+@property (weak, nonatomic) id photo;
+@property (nonatomic, weak) id delegate;
+@property (readonly) NSString *description;
 
 @end

@@ -9,6 +9,7 @@
 #import "FlickrSpotsRecentPhotosViewController.h"
 #import "FlickrSpotsPhotoDisplayViewController.h"
 #import "FlickrSpotsFavoriteStore.h"
+#import "FlickrSpotsPhotoModel.h"
 #import "FlickrFetcher/FlickrFetcher.h"
 
 @interface FlickrSpotsRecentPhotosViewController ()
@@ -26,14 +27,19 @@
     [self.tableView reloadData];
 }
 
+-(void)configurePhotoDisplayViewController:(FlickrSpotsPhotoDisplayViewController *)pvc
+                                 withPhoto:(id)photoObject
+{
+    [pvc setDelegate:self];
+    [pvc setPhoto:photoObject];
+}
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"showPhoto"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
         NSUInteger whichPhoto = [indexPath indexAtPosition:(indexPath.length - 1)];
         NSDictionary *photoObject = [self.viewed objectAtIndex:whichPhoto];
-        [segue.destinationViewController setPhotoLocation:[FlickrFetcher urlForPhoto:photoObject format:2]];
-        [segue.destinationViewController setDescription:[[sender textLabel] text]];
-        [segue.destinationViewController setDelegate:self];
+        [self configurePhotoDisplayViewController:segue.destinationViewController withPhoto:photoObject];
     }
 }
 
@@ -55,74 +61,29 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     // Configure the cell...
-    NSDictionary *currentPhoto = [self.viewed objectAtIndex:indexPath.row];
-    NSString *titleString = [currentPhoto valueForKey:FLICKR_PHOTO_TITLE];
-    NSString *descriptionString = [currentPhoto valueForKeyPath:FLICKR_PHOTO_DESCRIPTION];
-    if (titleString && ![titleString isEqualToString:@""]) {
-        cell.textLabel.text = titleString;
-        cell.detailTextLabel.text = descriptionString;
-    }
-    else if (descriptionString && ![descriptionString isEqualToString:@""]) {
-        cell.textLabel.text = descriptionString;
-        cell.detailTextLabel.text = @"";
-    }
-    else {
-        cell.textLabel.text = @"Unknown";
-        cell.detailTextLabel.text = @"";
-    }
+    FlickrSpotsPhotoModel *photoModel = [FlickrSpotsPhotoModel initWithPhoto:[self.viewed objectAtIndex:indexPath.row]];
+    cell.textLabel.text = photoModel.photoTitle;
+    cell.detailTextLabel.text = photoModel.photoDescription;
     return cell;
 }
 
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
-
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
- {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- }
- else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
- }
- */
-
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
- {
- }
- */
-
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
-
 #pragma mark - Table view delegate
+
+-(FlickrSpotsPhotoDisplayViewController *)photoViewControllerFromSplitView {
+    id pvc = [self.splitViewController.viewControllers lastObject];
+    if (![pvc isKindOfClass:[FlickrSpotsPhotoDisplayViewController class]]) {
+        pvc = nil;
+    }
+    return pvc;
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    id pvc = [self photoViewControllerFromSplitView];
+    if (pvc) {
+        id photoObject = [self.viewed objectAtIndex:indexPath.row];
+        [self configurePhotoDisplayViewController:pvc withPhoto:photoObject];
+    }
 }
 
 @end
