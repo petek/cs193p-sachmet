@@ -198,11 +198,11 @@
             </objects>
             <point key="canvasLocation" x="1983" y="-2725"/>
         </scene>
-        <!--Navigation Controller - Recent Photos-->
+        <!--Navigation Controller-->
         <scene sceneID="Be6-Cq-77K">
             <objects>
                 <navigationController definesPresentationContext="YES" id="wXM-VZ-UCm" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Recent Photos" id="lqV-uS-Km6"/>
+                    <tabBarItem key="tabBarItem" systemItem="history" id="lqV-uS-Km6"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="f3d-7o-Du0">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -214,11 +214,11 @@
             </objects>
             <point key="canvasLocation" x="1486" y="-2725"/>
         </scene>
-        <!--Navigation Controller - Top Places-->
+        <!--Navigation Controller-->
         <scene sceneID="ikh-C1-mod">
             <objects>
                 <navigationController definesPresentationContext="YES" id="hz0-5C-dkm" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Top Places" id="EDS-6E-DXU"/>
+                    <tabBarItem key="tabBarItem" systemItem="topRated" id="EDS-6E-DXU"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="TRc-41-o8n">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -245,26 +245,6 @@
             <point key="canvasLocation" x="-2" y="-1597"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="FlickrSpotsPhotoDisplayViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FlickrSpotsPhotoDisplayViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="titleBar" candidateClass="UIToolbar"/>
-                <relationship kind="outlet" name="titleBarTitle" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-        <class className="FlickrSpotsPlacePhotosViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FlickrSpotsPlacePhotosViewController.h"/>
-        </class>
-        <class className="FlickrSpotsRecentPhotosViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FlickrSpotsRecentPhotosViewController.h"/>
-        </class>
-        <class className="FlickrSpotsTopPlacesViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FlickrSpotsTopPlacesViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
