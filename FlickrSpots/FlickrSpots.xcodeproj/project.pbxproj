@@ -114,10 +114,12 @@
 			children = (
 				E349728116418B2600639E9A /* FlickrSpotsAppDelegate.h */,
 				E349728216418B2600639E9A /* FlickrSpotsAppDelegate.m */,
-				E349728A16418B2600639E9A /* iPhone.storyboard */,
-				E3A205E31654324200B13149 /* iPad.storyboard */,
 				E3C9056E1642D9820035A48B /* FlickrSpotsFavoriteStore.h */,
 				E3C9056F1642D9820035A48B /* FlickrSpotsFavoriteStore.m */,
+				E3A2063A1656CCAD00B13149 /* FlickrSpotsPhotoModel.h */,
+				E3A2063B1656CCAD00B13149 /* FlickrSpotsPhotoModel.m */,
+				E349728A16418B2600639E9A /* iPhone.storyboard */,
+				E3A205E31654324200B13149 /* iPad.storyboard */,
 				E3C905631642B5840035A48B /* FlickrSpotsPhotoDisplayViewController.h */,
 				E3C905641642B5850035A48B /* FlickrSpotsPhotoDisplayViewController.m */,
 				E34972AE1641B16100639E9A /* FlickrSpotsPlacePhotosViewController.h */,
@@ -126,8 +128,6 @@
 				E3C9056C1642C06A0035A48B /* FlickrSpotsRecentPhotosViewController.m */,
 				E34972A8164190D100639E9A /* FlickrSpotsTopPlacesViewController.h */,
 				E34972A9164190D100639E9A /* FlickrSpotsTopPlacesViewController.m */,
-				E3A2063A1656CCAD00B13149 /* FlickrSpotsPhotoModel.h */,
-				E3A2063B1656CCAD00B13149 /* FlickrSpotsPhotoModel.m */,
 				E34972A016418B4E00639E9A /* FlickrFetcher */,
 				E349727916418B2600639E9A /* Supporting Files */,
 			);

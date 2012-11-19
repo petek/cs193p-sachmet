@@ -93,13 +93,13 @@
         return nil;
     }
     NSData *photoData;
-    NSLog(@"Checking cache...");
+    // NSLog(@"Checking cache...");
     if ([self photoIsInCache:FlickrPhotoFormatLarge]) {
-        NSLog(@"Fetching from cache...");
+        // NSLog(@"Fetching from cache...");
         photoData = [self getPhotoFromCache:FlickrPhotoFormatLarge];
     }
     if (photoData == nil) { // catch a cache failure
-        NSLog(@"Going to Internet...");
+        // NSLog(@"Going to Internet...");
         photoData = [self photoDataAtURL:self.largeURL];
         if (photoData != nil) {
             [self storePhotoInCache:photoData forSize:FlickrPhotoFormatLarge];
@@ -134,7 +134,7 @@
 }
 
 -(NSData *)photoDataAtURL:(NSURL *)url {
-    NSLog(@"Getting photo from Internet...");
+    // NSLog(@"Getting photo from Internet...");
     return [NSData dataWithContentsOfURL:url];
 }
 
@@ -169,10 +169,10 @@
 
 -(NSData *)getPhotoFromCache:(FlickrPhotoFormat)photoFormat {
     NSString *photoLocation = [self photoCacheLocation:photoFormat];
-    NSLog(@"Checking for photo in cache at %@", photoLocation);
+    // NSLog(@"Checking for photo in cache at %@", photoLocation);
     if (photoLocation) {
         NSFileManager *fileManager = [[NSFileManager alloc] init];
-        NSLog(@"Got photo from cache!");
+        // NSLog(@"Got photo from cache!");
         return [fileManager contentsAtPath:photoLocation];
     }
     return nil;
@@ -181,16 +181,16 @@
 -(NSString *)photoCacheLocation:(FlickrPhotoFormat)photoFormat {
     NSURL *filename = [self cacheFileName:photoFormat];
     if (![filename isFileURL]) {
-        NSLog(@"Cache location is not a File URL");
+        // NSLog(@"Cache location is not a File URL");
         return nil;
     }
     NSDictionary *cacheContents = [self cacheContents];
     NSArray *cacheFiles = [cacheContents allKeys];
     for (NSString *cacheFile in cacheFiles) {
         NSURL *cacheURL = [[cacheContents objectForKey:cacheFile] objectForKey:@"URL"];
-        NSLog(@"Checking cache locations: %@ vs %@", [cacheURL absoluteString], [filename absoluteString]);
+        // NSLog(@"Checking cache locations: %@ vs %@", [cacheURL absoluteString], [filename absoluteString]);
         if ([[cacheURL fileReferenceURL] isEqual:[filename fileReferenceURL]]) {
-            NSLog(@"Found it!");
+            // NSLog(@"Found it!");
             return [filename path];
         }
     }
@@ -203,14 +203,14 @@
     
     NSUInteger filesize = [photoData length];
     if (filesize > MAX_CACHE_SIZE) {
-        NSLog(@"Refusing to cache thing larger than our allowable cache!");
+        // NSLog(@"Refusing to cache thing larger than our allowable cache!");
         return;
     }
     
     NSUInteger cacheSize = [self cacheSize];
     while (filesize + cacheSize > MAX_CACHE_SIZE) {
        
-        NSLog(@"Checking: %d vs %d (%d + %d)", MAX_CACHE_SIZE, (filesize + cacheSize), filesize, cacheSize);
+        // NSLog(@"Checking: %d vs %d (%d + %d)", MAX_CACHE_SIZE, (filesize + cacheSize), filesize, cacheSize);
         NSDictionary *oldestItem;
         NSDictionary *cacheContents = [self cacheContents];
         NSArray *cacheFiles = [cacheContents allKeys];
@@ -232,12 +232,12 @@
             break; // this can happen if the new file is bigger than the allowable cache size
         }
         else {
-            NSLog(@"Evicting %@", [oldestItem objectForKey:@"URL"]);
+            // NSLog(@"Evicting %@", [oldestItem objectForKey:@"URL"]);
             [fileManager removeItemAtURL:[oldestItem objectForKey:@"URL"] error:nil];
             cacheSize = [self cacheSize];
         }
     }
-    NSLog(@"Creating file in cache at %@", [filename path]);
+    // NSLog(@"Creating file in cache at %@", [filename path]);
     [fileManager createFileAtPath:[filename path] contents:photoData attributes:nil];
 }
 
@@ -341,12 +341,12 @@
     
     NSUInteger sizeOfCache = 0;
     NSArray *files = [contents allKeys];
-    NSLog(@"Checking size of cache...");
+    // NSLog(@"Checking size of cache...");
     for (NSString *filename in files) {
-        NSLog(@"Adding %@: %d", filename, [[[contents objectForKey:filename] objectForKey:@"Size"] unsignedIntegerValue]);
+        // NSLog(@"Adding %@: %d", filename, [[[contents objectForKey:filename] objectForKey:@"Size"] unsignedIntegerValue]);
         sizeOfCache += [[[contents objectForKey:filename] objectForKey:@"Size"] unsignedIntegerValue];
     }
-    NSLog(@"Size of cache: %d", sizeOfCache);
+    // NSLog(@"Size of cache: %d", sizeOfCache);
    
     return sizeOfCache;
 }
