@@ -74,7 +74,7 @@
 
 -(NSString *)description {
     if (self.photoModel) {
-        return [self.photoModel photoDescription];
+        return [self.photoModel photoTitle];
     }
     return @"Unknown";
 }
