@@ -27,13 +27,13 @@
 
 + (NSArray *)recentGeoreferencedPhotos
 {
-    NSString *request = [NSString stringWithFormat:@"http://api.flickr.com/services/rest/?method=flickr.photos.search&per_page=500&license=1,2,4,7&has_geo=1&extras=original_format,tags,description,geo,date_upload,owner_name,place_url"];
+    NSString *request = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&per_page=500&license=1,2,4,7&has_geo=1&extras=original_format,tags,description,geo,date_upload,owner_name,place_url"];
     return [[self executeFlickrFetch:request] valueForKeyPath:@"photos.photo"];
 }
 
 + (NSArray *)topPlaces
 {
-    NSString *request = [NSString stringWithFormat:@"http://api.flickr.com/services/rest/?method=flickr.places.getTopPlacesList&place_type_id=7"];
+    NSString *request = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.places.getTopPlacesList&place_type_id=7"];
     return [[self executeFlickrFetch:request] valueForKeyPath:@"places.place"];
 }
 
@@ -41,7 +41,7 @@
 {
     NSString *placeId = [place objectForKey:FLICKR_PLACE_ID];
     if (placeId) {
-        NSString *request = [NSString stringWithFormat:@"http://api.flickr.com/services/rest/?method=flickr.photos.search&has_geo=1&place_id=%@&per_page=%d&extras=original_format,tags,description,geo,date_upload,owner_name,place_url", placeId, maxResults];
+        NSString *request = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&has_geo=1&place_id=%@&per_page=%d&extras=original_format,tags,description,geo,date_upload,owner_name,place_url", placeId, maxResults];
         return [[self executeFlickrFetch:request] valueForKeyPath:@"photos.photo"];
     }
     return nil;
@@ -71,7 +71,7 @@
 		case FlickrPhotoFormatOriginal:  formatString = @"o"; break;
 	}
     
-	return [NSString stringWithFormat:@"http://farm%@.static.flickr.com/%@/%@_%@_%@.%@", farm, server, photo_id, secret, formatString, fileType];
+	return [NSString stringWithFormat:@"https://farm%@.static.flickr.com/%@/%@_%@_%@.%@", farm, server, photo_id, secret, formatString, fileType];
 }
 
 + (NSURL *)urlForPhoto:(NSDictionary *)photo format:(FlickrPhotoFormat)format
